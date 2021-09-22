@@ -1,5 +1,4 @@
 from flask import Flask, redirect, url_for,render_template,request,session,flash
-
 import time
 import tweepy
 import json
@@ -123,7 +122,7 @@ def api_callback():
 @app.route('/api/authorize_twitter')
 def authorize_twitter():
 
-    auth = tweepy.OAuthHandler("cSkhhB2g5M9ie6FFbFXhjrVLF","xZsHTE58CFdcBXGAAgloSxOiBkspdxhCl7XupLNpAZlmnaKZoT","http://127.0.0.1:5000/api/callback")
+    auth = tweepy.OAuthHandler("cSkhhB2g5M9ie6FFbFXhjrVLF","xZsHTE58CFdcBXGAAgloSxOiBkspdxhCl7XupLNpAZlmnaKZoT","https://commenttwitter.herokuapp.com/api/callback")
 
     try:
         redirect_url = auth.get_authorization_url()
