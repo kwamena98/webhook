@@ -18,8 +18,8 @@ password="ba1ebd591ccd47d24a687e26e41183de23d0f2ce88a83dfa62dd7164137fda56"
 db_host="ec2-52-0-93-3.compute-1.amazonaws.com"
 
 def credentials(token,token_secret,tweet_id,message):
-    API_KEY="cSkhhB2g5M9ie6FFbFXhjrVLF"
-    API_SECRET="xZsHTE58CFdcBXGAAgloSxOiBkspdxhCl7XupLNpAZlmnaKZoT"
+    API_KEY="Oi0L0L9HpJ922WQhkX6Qkcwlo"
+    API_SECRET="Vd8ZVFgy4NHKHGT9z1taquyfSKfYwd3E5o5u6Dqcm3LjjoCfZe"
     ACCESS_TOKEN = token
     ACCESS_SECRET =token_secret
 
@@ -94,7 +94,7 @@ def api_callback():
     print("oauth_token: ", oauth_token)
     print("oauth_verifier: ", oauth_verifier)
 
-    auth = tweepy.OAuthHandler("cSkhhB2g5M9ie6FFbFXhjrVLF","xZsHTE58CFdcBXGAAgloSxOiBkspdxhCl7XupLNpAZlmnaKZoT")
+    auth = tweepy.OAuthHandler("Oi0L0L9HpJ922WQhkX6Qkcwlo","Vd8ZVFgy4NHKHGT9z1taquyfSKfYwd3E5o5u6Dqcm3LjjoCfZe")
     auth.request_token = { "oauth_token": oauth_token, "oauth_token_secret": oauth_verifier }
     auth.get_access_token(oauth_verifier)
     
@@ -122,7 +122,7 @@ def api_callback():
 @app.route('/api/authorize_twitter')
 def authorize_twitter():
 
-    auth = tweepy.OAuthHandler("cSkhhB2g5M9ie6FFbFXhjrVLF","xZsHTE58CFdcBXGAAgloSxOiBkspdxhCl7XupLNpAZlmnaKZoT","https://commenttwitter.herokuapp.com/api/callback")
+    auth = tweepy.OAuthHandler("Oi0L0L9HpJ922WQhkX6Qkcwlo","Vd8ZVFgy4NHKHGT9z1taquyfSKfYwd3E5o5u6Dqcm3LjjoCfZe","https://commenttwitter.herokuapp.com/api/callback")
 
     try:
         redirect_url = auth.get_authorization_url()
