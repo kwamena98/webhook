@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for,render_template,request,session,flash
+from flask_mysqldb import MySQL
 import time
 import tweepy
 import json
@@ -18,8 +19,8 @@ password="ba1ebd591ccd47d24a687e26e41183de23d0f2ce88a83dfa62dd7164137fda56"
 db_host="ec2-52-0-93-3.compute-1.amazonaws.com"
 
 def credentials(token,token_secret,tweet_id,message):
-    API_KEY="41hPch4ihzom6519OkGs35k2v"
-    API_SECRET="uif0CaGeU6sFtXMnvGTe95h1qm0TBNDed86ejB0is11YCGJZKg"
+    API_KEY="cSkhhB2g5M9ie6FFbFXhjrVLF"
+    API_SECRET="xZsHTE58CFdcBXGAAgloSxOiBkspdxhCl7XupLNpAZlmnaKZoT"
     ACCESS_TOKEN = token
     ACCESS_SECRET =token_secret
 
@@ -94,7 +95,7 @@ def api_callback():
     print("oauth_token: ", oauth_token)
     print("oauth_verifier: ", oauth_verifier)
 
-    auth = tweepy.OAuthHandler("41hPch4ihzom6519OkGs35k2v","uif0CaGeU6sFtXMnvGTe95h1qm0TBNDed86ejB0is11YCGJZKg")
+    auth = tweepy.OAuthHandler("cSkhhB2g5M9ie6FFbFXhjrVLF","xZsHTE58CFdcBXGAAgloSxOiBkspdxhCl7XupLNpAZlmnaKZoT")
     auth.request_token = { "oauth_token": oauth_token, "oauth_token_secret": oauth_verifier }
     auth.get_access_token(oauth_verifier)
     
@@ -122,7 +123,7 @@ def api_callback():
 @app.route('/api/authorize_twitter')
 def authorize_twitter():
 
-    auth = tweepy.OAuthHandler("41hPch4ihzom6519OkGs35k2v","uif0CaGeU6sFtXMnvGTe95h1qm0TBNDed86ejB0is11YCGJZKg","http://127.0.0.1:5000/api/callback")
+    auth = tweepy.OAuthHandler("cSkhhB2g5M9ie6FFbFXhjrVLF","xZsHTE58CFdcBXGAAgloSxOiBkspdxhCl7XupLNpAZlmnaKZoT","http://127.0.0.1:5000/api/callback")
 
     try:
         redirect_url = auth.get_authorization_url()
