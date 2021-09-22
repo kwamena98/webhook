@@ -1,5 +1,4 @@
 from flask import Flask, redirect, url_for,render_template,request,session,flash
-from flask_mysqldb import MySQL
 import time
 import tweepy
 import json
@@ -41,6 +40,7 @@ conn=psycopg2.connect(dbname=dbName,user=user_,password=password,host=db_host)
 
 
 cur=conn.cursor()
+
 
 t1 = threading.Thread()
 t1.start()
@@ -237,4 +237,4 @@ if __name__=='__main__':
 
 
 
-    app.run(debug=True)
+    app.run(debug=True,threaded=True)
