@@ -30,9 +30,10 @@ def credentials(token,token_secret,tweet_id,message):
     api = tweepy.API(auth, wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True)
 
-    
-    api.update_status(message,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
-
+    try:
+        api.update_status(message,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
+    except:
+        pass
 
 
 
