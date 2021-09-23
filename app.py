@@ -219,7 +219,6 @@ def stop(stopper):
 @app.route("/stop",methods=["GET","POST"])
 def interupt():
     # if exist_event.is_set():
-        t = threading.Thread(target=credentials, args=(2))
         t.join()
 
 
