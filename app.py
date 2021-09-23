@@ -17,23 +17,54 @@ user_="afftbbpopraylc"
 password="ba1ebd591ccd47d24a687e26e41183de23d0f2ce88a83dfa62dd7164137fda56"
 db_host="ec2-52-0-93-3.compute-1.amazonaws.com"
 
-def credentials(token,token_secret,tweet_id,message):
-    API_KEY="Oi0L0L9HpJ922WQhkX6Qkcwlo"
-    API_SECRET="Vd8ZVFgy4NHKHGT9z1taquyfSKfYwd3E5o5u6Dqcm3LjjoCfZe"
-    ACCESS_TOKEN = token
-    ACCESS_SECRET =token_secret
 
 
-    auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
-    auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
-    api = tweepy.API(auth, wait_on_rate_limit=True,
-        wait_on_rate_limit_notify=True)
+def credentials(tweet_id):
+
+    data=cur.execute("SELECT * FROM users")
+
+    data=cur.fetchall()
+
+
+    # data=list(data)
+    
+
+    for something in data:
+        token=something[1]
+        token_secret=something[2]
+        comment=something[3]
+
+        API_KEY="Oi0L0L9HpJ922WQhkX6Qkcwlo"
+        API_SECRET="Vd8ZVFgy4NHKHGT9z1taquyfSKfYwd3E5o5u6Dqcm3LjjoCfZe"
+        ACCESS_TOKEN = token
+        ACCESS_SECRET =token_secret
+
+
+
+        auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
+        auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
+
+        api = tweepy.API(auth, wait_on_rate_limit=True,
+            wait_on_rate_limit_notify=True)
+
+        api.update_status(comment,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
+
+        time.sleep(60*1.2)
+
+        print("waiting for the next move")
+
+        
 
     
-    api.update_status(message,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
+
+    # credentials()
 
 
+
+    
+
+    
 
 
 conn=psycopg2.connect(dbname=dbName,user=user_,password=password,host=db_host)
@@ -206,23 +237,9 @@ def tweet():
         
 
 
-        data=cur.execute("SELECT * FROM users")
 
-        data=cur.fetchall()
-        # data=list(data)
-        for something in data:
-            access_toke=something[1]
-            access_secret=something[2]
-            comment=something[3]
-
-
-            t = threading.Thread(target=credentials, args=(access_toke,access_secret,id_,comment))
-            t.start()
-
-            # credentials()
-            time.sleep(60*1.2)
-
-
+        t = threading.Thread(target=credentials, args=(id_,))
+        t.start()
 
 
 
