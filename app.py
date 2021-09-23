@@ -208,19 +208,15 @@ def dashboard():
     return render_template('dashboard.html',req=data)
 
 
-# def stop(stopper):
-
-#     print("I am stopping if you want me")
-
 
 # @app.route("/stop",methods=["GET","POST"])
 # def interupt():
 #     # if exist_event.is_set():
-#         t = threading.Thread(target=credentials, args=(id_,))
-#         t.start()
-
-
-#         return ("You stopped The bots from Running Go back and  refresh the page  and Start Again")
+#         t1.join()
+#         print("Ended Hmmmmm")
+        
+    
+#         return ("You stopped The bots from Running Go back refresh the page  and Start Again")
 
 
 
