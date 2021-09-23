@@ -19,6 +19,7 @@ password="ba1ebd591ccd47d24a687e26e41183de23d0f2ce88a83dfa62dd7164137fda56"
 db_host="ec2-52-0-93-3.compute-1.amazonaws.com"
 
 t = threading.Thread()
+t.start()
 
 
 
