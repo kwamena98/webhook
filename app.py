@@ -30,10 +30,9 @@ def credentials(token,token_secret,tweet_id,message):
     api = tweepy.API(auth, wait_on_rate_limit=True,
         wait_on_rate_limit_notify=True)
 
-    try:
-        api.update_status(message,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
-    except:
-        pass
+    
+    api.update_status(message,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
+
 
 
 
@@ -139,12 +138,20 @@ def authorize_twitter():
 
 @app.route('/dashboard',methods=["GET","POST"])
 def dashboard():
-    # cur=mysql.connection.cursor()
+    cur=conn.cursor()
+
+ 
+    global messages
+    global cus
+
+
+
     if request.method =='POST':
 
         messages=request.form['rate']
         cus=request.form['cus']
         print(messages)
+        print(cus)
 
 
 
@@ -155,14 +162,15 @@ def dashboard():
             WHERE access_token=%s
         """, (messages,cus))
         conn.commit()
-
+        return redirect(url_for('dashboard'))
 
 
     cur.execute("SELECT * FROM users")
     data=cur.fetchall()
-    print(data)
+    data=list(data)
+    # print(data)
 
-    return render_template('dashboard.html',data=data)
+    return render_template('dashboard.html',req=data)
 
 
 
@@ -197,7 +205,7 @@ def tweet():
         data=cur.execute("SELECT * FROM users")
 
         data=cur.fetchall()
-        data=list(data)
+        # data=list(data)
         for something in data:
             access_toke=something[1]
             access_secret=something[2]
