@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <style>
+        input,textarea{width:400px}
+
         body {
             padding-top: 5rem;
         }
@@ -47,108 +49,111 @@
     </head>
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="">Twitter Accounts Dashboard</a>
-    <a class="navbar-brand" href="/tweet">Start</a>
 
-    
-</nav>
-<div class="container">
-<h1>Accounts</h1>
-<span><a  href="/api/authorize_twitter" class="btn btn-outline-dark" role="button" aria-pressed="true">Add Twitter Account</a></span>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Access Token</th>
-        <th>Access Secret</th>
-        <th>Comment</th>
-        <th>Action</th>
+  
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="">Twitter Accounts Dashboard</a>
+            <a class="navbar-brand" href="/tweet">Start</a>
         
-
-    </tr>
-    </thead>
-    <tbody>
-    </tr>
-
-    {% for row in data %}
-    <tr>
-        <td>{{row[0]}} </td>
-        <td>{{row[1]}} </td>
-        <td>{{row[2]}} </td>
-        <td>{{row[3]}} </td>
-        <td>
-          <a href="/edit/{{row.0}}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
-      </td>
-      <td>
-        <a href="/delete/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure For Delete?')">Delete</a>
-    </td>
-
-    </tr>
-
-</tr>
-
-
-</form>
-</tbody>
-</table>
-
-</div>
-
-<br>
-<br>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-<div id="modaledit{{row.0}}" class="modal fade" role="dialog">
-
-
-  <div class="modal-dialog">
-
-
-     <div class="modal-content">
-
-
-        <div class="modal-header">
-
-
-
-           <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-
-           <h4 class="modal-title">Edit Comment</h4>
-
-
-
-
-        </div>
-        <div class="modal-body">
-          <form method="POST" action="/dashboard">
-          <div class="form-group">
-            <div class="row">
-              <div class="col-md-12 form-group">
-                <textarea class="form-control" name="rate" id="message" cols="30" rows="7" placeholder="Comment for this Account"></textarea>
-              </div>
-
-              <div class="form-group">
-              <input type="hidden" id="mssss" name="cus" value="{{row.1}}">
-            </div>
-
-            <button class="btn btn-success btn-xs" type="submit">Submit Comment</button>
-          
             
-       </form>
-
-          
-
-          {% endfor %} 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        </nav>
+<div class="container">
+        <h1>Accounts </h1>
+        <span><a  href="/api/authorize_twitter" class="btn btn-outline-dark" role="button" aria-pressed="true">Add Twitter Account</a></span>
 
 
+        <table class="table table-striped ">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Access Token</th>
+                <th>Access Secret</th>
+                <th>Comment</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tr>
+            <tr>
+                {% for row in req %}
+                <td>{{row[0]}} </td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td> 
+                <td>{{row[3]}}</td>
+                <td>
+                    <a href="/edit/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
+                </td>
+                <td>
+                    <a href="/delete/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure For Delete?')">Delete</a>
+                </td>
+    
+
+            </tr>
 
 
-</body>
-</html>
+
+
+
+            
+            
+            
+            <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
+
+
+                <div class="modal-dialog">
+             
+             
+                   <div class="modal-content">
+             
+             
+                      <div class="modal-header">
+             
+             
+                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+             
+             
+                         <h4 class="modal-title">Update the comment</h4>
+             
+             
+                      </div>
+             
+             
+                      <div class="modal-body">
+             
+             
+                        <form action="{{ url_for('dashboard') }}" method="POST">
+             
+                            <div class="form-group">
+                                <div class="row">
+                                  <div class="col-md-12 form-group">
+                                    <textarea class="form-control" name="rate" id="message" cols="30" rows="7" placeholder="Comment for this Account"></textarea>
+                                  </div>
+                    
+                                  <div class="form-group">
+                                  <input type="hidden" id="mssss" name="cus" value="{{row.1}}">
+                                </div>
+             
+             
+                               <button class="btn btn-primary" type="submit">Update</button>
+             
+                            </div>
+
+                            {% endfor %} 
+             
+                         </form>
+            </tbody>
+        </table>
+   
+    </div>
+
+    <br>
+    <br>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    </body>
+    </html>
