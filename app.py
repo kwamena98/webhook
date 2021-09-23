@@ -43,7 +43,7 @@ cur=conn.cursor()
 
 
 t1 = threading.Thread()
-t1.start()
+# t1.start()
 exist_event=threading.Event()
 
 @app.route('/')
@@ -241,9 +241,9 @@ def delete(id_data):
 
 
 if __name__=='__main__':
-
+        t1.start()
         # starting thread 1
 
 
 
-    app.run(debug=True,threaded=True)
+        app.run(debug=True,threaded=True)
