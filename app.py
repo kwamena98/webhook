@@ -1,6 +1,5 @@
 from flask import Flask, redirect, url_for,render_template,request,session,flash
 import time
-from six import create_bound_method
 import tweepy
 import json
 import psycopg2
@@ -18,8 +17,6 @@ user_="afftbbpopraylc"
 password="ba1ebd591ccd47d24a687e26e41183de23d0f2ce88a83dfa62dd7164137fda56"
 db_host="ec2-52-0-93-3.compute-1.amazonaws.com"
 
-t = threading.Thread()
-t.start()
 
 
 
@@ -211,18 +208,19 @@ def dashboard():
     return render_template('dashboard.html',req=data)
 
 
-def stop(stopper):
+# def stop(stopper):
 
-    print("I am stopping if you want me to")
-
-
-@app.route("/stop",methods=["GET","POST"])
-def interupt():
-    # if exist_event.is_set():
-        t.join()
+#     print("I am stopping if you want me")
 
 
-        return ("You stopped The bots from Running Go back and  refresh the page  and Start Again")
+# @app.route("/stop",methods=["GET","POST"])
+# def interupt():
+#     # if exist_event.is_set():
+#         t = threading.Thread(target=credentials, args=(id_,))
+#         t.start()
+
+
+#         return ("You stopped The bots from Running Go back and  refresh the page  and Start Again")
 
 
 
@@ -243,10 +241,9 @@ def tweet():
         
 
 
-        t.join()
-        credentials(id_)
-        
-        
+
+        t = threading.Thread(target=credentials, args=(id_,))
+        t.start()
 
 
 
