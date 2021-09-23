@@ -42,11 +42,15 @@ conn=psycopg2.connect(dbname=dbName,user=user_,password=password,host=db_host)
 cur=conn.cursor()
 
 
-t1 = threading.Thread()
-# t1.start()
-exist_event=threading.Event()
+
+# exist_event=threading.Event()
+
+
+
+
 
 @app.route('/')
+
 
 
 
@@ -174,14 +178,14 @@ def dashboard():
 
 
 
-@app.route("/stop",methods=["GET","POST"])
-def interupt():
-    # if exist_event.is_set():
-        t1.join()
-        print("Ended Hmmmmm")
+# @app.route("/stop",methods=["GET","POST"])
+# def interupt():
+#     # if exist_event.is_set():
+#         t1.join()
+#         print("Ended Hmmmmm")
         
     
-        return ("You stopped The bots from Running Go back refresh the page  and Start Again")
+#         return ("You stopped The bots from Running Go back refresh the page  and Start Again")
 
 
 
@@ -198,7 +202,7 @@ def tweet():
         print(id_)
 
         
-        t1.join()
+
         
 
 
@@ -211,8 +215,12 @@ def tweet():
             access_secret=something[2]
             comment=something[3]
 
-            credentials(access_toke,access_secret,id_,comment)
-            time.sleep(60*1.7)
+
+            t = threading.Thread(target=credentials, args=(access_toke,access_secret,id_,comment))
+            t.start()
+
+            # credentials()
+            time.sleep(60*1.2)
 
 
 
@@ -241,9 +249,9 @@ def delete(id_data):
 
 
 if __name__=='__main__':
-        t1.start()
+        
         # starting thread 1
 
 
 
-        app.run(debug=True,threaded=True)
+    app.run(debug=True,threaded=True)
