@@ -44,20 +44,15 @@ def credentials(tweet_id):
 
         auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
         auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
-        
-        
-        
+
         api = tweepy.API(auth, wait_on_rate_limit=True,
             wait_on_rate_limit_notify=True)
-        try:
 
-            api.update_status(comment,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
-            print("waiting for the next move")
-            time.sleep(60*1.2)
-    
-                
-        except:
-            pass
+        api.update_status(comment,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
+
+        time.sleep(60*1.2)
+
+        print("waiting for the next move")
 
         
 
@@ -213,15 +208,19 @@ def dashboard():
     return render_template('dashboard.html',req=data)
 
 
+def stop(stopper):
 
-# @app.route("/stop",methods=["GET","POST"])
-# def interupt():
-#     # if exist_event.is_set():
-#         t1.join()
-#         print("Ended Hmmmmm")
-        
-    
-#         return ("You stopped The bots from Running Go back refresh the page  and Start Again")
+    print("I am stopping if you want me to ")
+
+
+@app.route("/stop",methods=["GET","POST"])
+def interupt():
+    # if exist_event.is_set():
+        t = threading.Thread(target=credentials, args=(2))
+        t.join()
+
+
+        return ("You stopped The bots from Running Go back and  refresh the page  and Start Again")
 
 
 
