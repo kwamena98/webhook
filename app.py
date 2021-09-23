@@ -45,14 +45,18 @@ def credentials(tweet_id):
         auth = tweepy.OAuthHandler(API_KEY, API_SECRET)
         auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
-        api = tweepy.API(auth, wait_on_rate_limit=True,
-            wait_on_rate_limit_notify=True)
+        try:
+            api = tweepy.API(auth, wait_on_rate_limit=True,
+                wait_on_rate_limit_notify=True)
 
-        api.update_status(comment,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
+            api.update_status(comment,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
 
-        time.sleep(60*1.2)
+            time.sleep(60*6)
 
-        print("waiting for the next move")
+            print("waiting for the next move")
+
+        except:
+            pass
 
         
 
