@@ -90,9 +90,12 @@
                 
                 {% elif row[4] == "Disabled" %}
                 <td class="p-3 mb-2 bg-danger text-white">{{row[4]}}</td>
+
+                {% else %}
+                <td class="p-3 mb-2 bg-primary text-white">{{row[4]}}</td>
+
                 {% endif %}
-
-
+         
                 <td>{{row[3]}}</td>
                 <td>
                     <a href="/edit/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
@@ -103,9 +106,7 @@
     
 
             </tr>
-
-
-
+  
 
 
             
