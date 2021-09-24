@@ -75,10 +75,14 @@
             <tbody>
             </tr>
             <tr>
+                
                 {% for row in req %}
+                
                 <td>{{row[0]}} </td>
                 <td>{{row[1]}}</td>
-                <td>{{row[4]}}</td>
+                
+                <td class="p-3 mb-2 bg-primary text-white">{{row[4]}}</td>
+           
                 <td>{{row[3]}}</td>
                 <td>
                     <a href="/edit/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
