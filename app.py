@@ -55,11 +55,11 @@ def credentials(tweet_id):
 
             api.update_status(comment,in_reply_to_status_id=tweet_id, auto_populate_reply_metadata=True)
 
-            time.sleep(60*6)
-
-            print("waiting for the next move")
-
             stats="Active"
+
+            
+
+            
 
         except:
 
@@ -77,8 +77,10 @@ def credentials(tweet_id):
             WHERE access_token=%s
         """, (stats,token))
         conn.commit()
-    
-
+        
+        print("waiting for the next move")
+        time.sleep(60*3)
+        
 
 @app.route('/')
 
