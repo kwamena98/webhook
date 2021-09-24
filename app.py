@@ -18,11 +18,15 @@ password="ba1ebd591ccd47d24a687e26e41183de23d0f2ce88a83dfa62dd7164137fda56"
 db_host="ec2-52-0-93-3.compute-1.amazonaws.com"
 
 
+conn=psycopg2.connect(dbname=dbName,user=user_,password=password,host=db_host)
+cur=conn.cursor()
+
+
 
 
 def credentials(tweet_id):
 
-    data=cur.execute("SELECT * FROM users")
+    data=cur.execute("SELECT * FROM newdata")
 
     data=cur.fetchall()
 
@@ -55,40 +59,28 @@ def credentials(tweet_id):
 
             print("waiting for the next move")
 
+            stats="Active"
+
         except:
-            pass
 
-        
 
+
+            # pass
+
+            stats="Disabled"
+
+
+
+        cur.execute("""
+            UPDATE newdata
+            SET status=%s
+            WHERE access_token=%s
+        """, (stats,token))
+        conn.commit()
     
-
-    # credentials()
-
-
-
-    
-
-    
-
-
-conn=psycopg2.connect(dbname=dbName,user=user_,password=password,host=db_host)
-
-
-cur=conn.cursor()
-
-
-
-# exist_event=threading.Event()
-
-
-
 
 
 @app.route('/')
-
-
-
-
 
 @app.route('/login', methods=["GET","POST"])
 def First_page():
@@ -146,7 +138,7 @@ def api_callback():
     access_secret=auth.access_token_secret
 
     
-    cur.execute("INSERT INTO users(access_token,access_secret) VALUES (%s,%s)",[access_token,access_secret])
+    cur.execute("INSERT INTO newdata(access_token,access_secret) VALUES (%s,%s)",[access_token,access_secret])
     conn.commit()
 
 
@@ -196,7 +188,7 @@ def dashboard():
 
 
         cur.execute("""
-            UPDATE users
+            UPDATE newdata
             SET comment=%s
             WHERE access_token=%s
         """, (messages,cus))
@@ -204,7 +196,7 @@ def dashboard():
         return redirect(url_for('dashboard'))
 
 
-    cur.execute("SELECT * FROM users")
+    cur.execute("SELECT * FROM newdata")
     data=cur.fetchall()
     data=list(data)
     # print(data)
@@ -258,7 +250,7 @@ def tweet():
 @app.route('/delete/<string:id_data>', methods = ['GET'])
 def delete(id_data):
 
-    cur.execute("DELETE FROM users WHERE id=%s", [id_data])
+    cur.execute("DELETE FROM newdata WHERE id=%s", [id_data])
     conn.commit()
     return redirect(url_for('dashboard'))
 
