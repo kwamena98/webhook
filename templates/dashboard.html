@@ -67,7 +67,7 @@
             <tr>
                 <th>Id</th>
                 <th>Access Token</th>
-                <th>Access Secret</th>
+                <th>Status</th>
                 <th>Comment</th>
                 <th>Action</th>
             </tr>
@@ -78,7 +78,7 @@
                 {% for row in req %}
                 <td>{{row[0]}} </td>
                 <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td> 
+                <td>{{row[4]}}</td>
                 <td>{{row[3]}}</td>
                 <td>
                     <a href="/edit/{{row.0}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
@@ -124,10 +124,11 @@
                         
              
                             <form action="/dashboard" method="POST">
+                                <div class="form-group">
                                 <label for="lname">Comment</label>
                                 <input type="text" id="lname" name="rate"><br><br>
                                 <input  type="hidden" value="{{row.1}}"  id="cus" name="cus"><br><br>
-
+                            </div>
                                 <input type="submit" value="Submit">
 
                             
