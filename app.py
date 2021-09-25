@@ -138,6 +138,9 @@ def api_callback():
 
     access_token=auth.access_token
     access_secret=auth.access_token_secret
+    
+    print(access_token)
+    print(access_secret)
 
     
     cur.execute("INSERT INTO newdata(access_token,access_secret) VALUES (%s,%s)",[access_token,access_secret])
