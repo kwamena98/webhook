@@ -6,7 +6,7 @@ import openai
 
 
 
-# openai.api_key =os.environ.get("API_KEY")
+openai.api_key =os.environ.get("API_KEY")
 
 
 
@@ -31,9 +31,28 @@ def return_response():
     # print("from:",data_)
     # Do something with the request.json data.
     x={
-        "keyword":"Hi"
-    }
+        "intent": { 
+        "name": "NAME_OF_INTENT", 
+        "confidence": 0.84
+    },
+    "alternative_intents": [ 
+
+    ],
+    "entities": {
+        "someEntity": [
+        {
+            "value": "somevalue",
+            "metadata": { 
+            
+            },
+        },
+    
+        ],
+    
+    }}
+    
     json.dumps(x)
+
     return (x)
 if __name__ == "__main__":
     app.run()
