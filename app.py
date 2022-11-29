@@ -14,9 +14,9 @@ import openai
 
 
 app = Flask(__name__)
-@app.route('/my_webhook', methods=['POST'])
+@app.route('/my_webhook', methods=['GET'])
 def return_response():
-    print(request.json)
+    # print(request.json)
     # response = openai.Completion.create(
     # model="text-davinci-003",
     # prompt=request.json,
