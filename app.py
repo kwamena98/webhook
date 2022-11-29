@@ -35,7 +35,7 @@ def return_response():
     # Do something with the request.json data.
     x={
 
-      "message":text
+      "message":"Hi"
     }
 
     x=json.dumps(x)
