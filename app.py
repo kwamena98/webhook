@@ -4,7 +4,7 @@ import json
 import os
 import openai
 
-openai.api_key ="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"
+openai.api_key ="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"
 
 
 
