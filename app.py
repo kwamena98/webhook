@@ -16,10 +16,7 @@ import openai
 app = Flask(__name__)
 @app.route('/my_webhook', methods=['GET','POST'])
 def return_response():
-    res=request.json
-    text=res['text']
-    # print(text)
-
+    # print(request.json)
     # response = openai.Completion.create(
     # model="text-davinci-003",
     # prompt=request.json,
@@ -40,6 +37,5 @@ def return_response():
 
     x=json.dumps(x)
     return (x)
-    
 if __name__ == "__main__":
     app.run()
