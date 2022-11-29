@@ -32,8 +32,9 @@ def return_response():
     # Do something with the request.json data.
     x={
 
-      "hello"
+      "message":"Hi"
     }
+
     x=json.dumps(x)
     return (x)
 if __name__ == "__main__":
