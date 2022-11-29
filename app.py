@@ -3,8 +3,10 @@ import json
 
 import os
 import openai
-# os.environ["OPENAI_API_KEY"] = "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"
-# openai.api_key =os.getenv("OPENAI_API_KEY")
+
+
+
+# openai.api_key =os.environ.get("API_KEY")
 
 
 
@@ -27,7 +29,11 @@ def return_response():
 
     # data_=response["choices"][0]["text"]
     # print("from:",data_)
-    ## Do something with the request.json data.
-    return ("HI")
+    # Do something with the request.json data.
+    x={
+        "keyword":"Hi"
+    }
+    json.dumps(x)
+    return (x)
 if __name__ == "__main__":
     app.run()
