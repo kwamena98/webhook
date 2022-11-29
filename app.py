@@ -18,7 +18,7 @@ app = Flask(__name__)
 def return_response():
     res=request.json
     text=res['text']
-    print(text)
+    # print(text)
 
     # response = openai.Completion.create(
     # model="text-davinci-003",
@@ -35,10 +35,11 @@ def return_response():
     # Do something with the request.json data.
     x={
 
-      "message":f"You said,{text}"
+      "message":text
     }
 
     x=json.dumps(x)
     return (x)
+    
 if __name__ == "__main__":
     app.run()
