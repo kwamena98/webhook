@@ -32,27 +32,8 @@ def return_response():
     # Do something with the request.json data.
     x={
 
-  "intent": { 
-    "name": "NAME_OF_INTENT", 
-    "confidence": 0.84
-  },
-  "alternative_intents": [ 
-
-  ],
-  "entities": {
-    "someEntity": [
-      {
-        "value": "somevalue",
-        "metadata": { 
-
-        },
-      },
-
-    ],
-
-  }
-
-}
+      "hello"
+    }
     x=json.dumps(x)
     return (x)
 if __name__ == "__main__":
