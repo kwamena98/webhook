@@ -39,13 +39,15 @@ def return_response():
           "confidence": 0.84
         },
         "alternative_intents": [ 
+          "Hi"
       
         ],
         "entities": {
           "someEntity": [
             {
-              "value": "somevalue",
+              "value": "Hi",
               "metadata": { 
+                "what's up"
 
               },
             },
