@@ -16,7 +16,9 @@ import openai
 app = Flask(__name__)
 @app.route('/my_webhook', methods=['GET','POST'])
 def return_response():
-#     t=request.json['text']
+
+  
+    # t=request.json['text']
     # response = openai.Completion.create(
     # model="text-davinci-003",
     # prompt=request.json,
@@ -32,7 +34,26 @@ def return_response():
     # Do something with the request.json data.
     x={
 
-      "message":"hi"
+        "intent": { 
+          "name": "NAME_OF_INTENT", 
+          "confidence": 0.84
+        },
+        "alternative_intents": [ 
+      
+        ],
+        "entities": {
+          "someEntity": [
+            {
+              "value": "somevalue",
+              "metadata": { 
+
+              },
+            },
+      
+          ],
+
+        }
+ 
     }
 
     x=json.dumps(x)
