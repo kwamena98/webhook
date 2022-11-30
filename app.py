@@ -32,33 +32,32 @@ def return_response():
     # data_=response["choices"][0]["text"]
     # print("from:",data_)
     # Do something with the request.json data.
-    x={
+  x={
 
-        "intent": { 
-          "name": "NAME_OF_INTENT", 
-          "confidence": 0.84
-        },
-        "alternative_intents": [ 
-          "Hi"
-      
-        ],
-        "entities": {
-          "someEntity": [
-            {
-              "value": "Hi",
-              "metadata": { 
-                "what's up"
+  "intent": { 
+  "name": "NAME_OF_INTENT", 
+  "confidence": 0.84
+  },
+  "alternative_intents": [ 
 
-              },
-            },
-      
-          ],
 
-        }
- 
-    }
+  ],
+  "entities": {
+  "someEntity": [
+  {
+    "value": "HI",
+    "metadata": { 
 
-    x=json.dumps(x)
-    return (x)
+    },
+  },
+
+  ],
+
+  }
+
+  }
+
+  x=json.dumps(x)
+  return (x)
 if __name__ == "__main__":
     app.run()
