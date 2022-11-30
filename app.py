@@ -43,9 +43,7 @@ def return_response():
   "someEntity": [
   {
     "value": "HI",
-    "metadata": { 
 
-    },
   },
 
   ],
