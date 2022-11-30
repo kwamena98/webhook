@@ -38,10 +38,7 @@ def return_response():
   "name": "NAME_OF_INTENT", 
   "confidence": 0.84
   },
-  "alternative_intents": [ 
 
-
-  ],
   "entities": {
   "someEntity": [
   {
